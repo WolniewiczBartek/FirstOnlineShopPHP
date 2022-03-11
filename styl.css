@@ -26,8 +26,8 @@ h5{
   font-size: 1.5vh;
 }
 #logo{
-  height: 17vmin;
-  width: 17vmin;
+  height: 15vmin;
+  width: 23vmin;
 }
 .smallimg{
   height: 6vmin;
@@ -107,7 +107,7 @@ form{
 }
 .sameheight{
   min-height: 72vmin;
-} 
+}
 #content{
   min-height: 72vmin;
   background-color: white;
@@ -122,7 +122,7 @@ form{
 .produkt{
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   width: 50%;
   border-top: 2px solid darkolivegreen;
@@ -171,7 +171,7 @@ footer{
 .produktsingle{
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   width: 50%;
   border-top: 2px solid darkolivegreen;
@@ -204,7 +204,7 @@ footer{
   border-bottom: 2px solid red;
 }
 a.button > div{
-  font-size: 2vmin;
+  font-size: 1.8vmin;
 }
 #lower_butt{
   width: 50%;
