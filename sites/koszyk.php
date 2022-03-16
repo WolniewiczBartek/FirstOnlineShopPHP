@@ -1,6 +1,5 @@
 <?php
 session_start();
-$p = isset($_GET['p']) ? $_GET['p'] : 1;
 function pokaz_koszyk(){
   $cena_all = 0.00;
   if(!empty($_SESSION['koszyk'])){
@@ -12,7 +11,7 @@ function pokaz_koszyk(){
 OPOLE;
     foreach($_SESSION['koszyk'] as $id => $sztuki){
       $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-      $sql = "select nazwa, zdjecie, cena, ilosc_magazyn from produkty where id=$id";
+      $sql = "SELECT nazwa, zdjecie, cena, ilosc_magazyn FROM produkty WHERE id=$id";
       $res = $conn->query($sql);
       while($produkt = $res->fetch_assoc()){
         $cena = ($sztuki*$produkt['cena']);
@@ -21,9 +20,9 @@ OPOLE;
         echo <<< OPOLE
         <div class=produkt>
           <div class=zwijaj>
-          <a href=../crud/produkt.php?id=$id><img class=midimg src=../images/$produkt[zdjecie] alt=$produkt[nazwa]></a>
+          <a href=./produkt.php?id=$id><img class=midimg src=../images/$produkt[zdjecie] alt=$produkt[nazwa]></a>
             <div>
-            <a href=../crud/produkt.php?id=$id><h3>$produkt[nazwa]</h3></a>
+            <a href=./produkt.php?id=$id><h3>$produkt[nazwa]</h3></a>
               <h4>$cena zł</h4>
               <h5>$sztuki szt.</h5>
             </div>
@@ -55,13 +54,13 @@ OPOLE;
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sklep </title>
+    <title>Gąbkomarzenie</title>
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
     <header>
-      <a href="../index.php"><img src="../logo.png" id="logo" alt="logo"></a>
-      <h1>Sklep internetowy</h1>
+      <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
+      <h1>Gąbkomarzenie</h1>
       <div id="nazwa">
         <a class="button" href="../index.php?action=reg"><div>Rejestracja</div></a>
         <a class="button" href="../index.php?action=log"><div>Zaloguj się</div></a>
@@ -70,13 +69,13 @@ OPOLE;
     <div id="content" class="sameheight">
 <?php
     if(isset($_SESSION['username'])){
-        if($_SESSION['username']!=""){
-          echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php?p=$p><div>Wróć</div></a><a class=button href=\"../index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
-        }
+      if($_SESSION['username']!=""){
+        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
       }
       else{
-        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php?p=$p><div>Wróć</div></a><a class=button href=../index.php?action=reg><div>Rejestracja</div></a><a class=button href=../index.php?action=log><div>Zaloguj się</div></a>'</script>";
+        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=reg><div>Rejestracja</div></a><a class=button href=../index.php?action=log><div>Zaloguj się</div></a>'</script>";
       }
+    }
     if(isset($_GET['action'])){
       if($_GET['action']=="del"){
         unset($_SESSION['koszyk'][$_GET['id']]);
@@ -87,16 +86,16 @@ OPOLE;
       elseif($_GET['action']=="plus"){
         if($_SESSION['koszyk'][$_GET['id']]<$_GET['max']){
           $_SESSION['koszyk'][$_GET['id']]++;
-          header('location: koszyk.php');
+          header('location: ./koszyk.php');
         }
       }
       elseif($_GET['action']=="minus"){
         if($_SESSION['koszyk'][$_GET['id']]>1){
           $_SESSION['koszyk'][$_GET['id']]--;
-          header('location: koszyk.php');
+          header('location: ./koszyk.php');
         }
         elseif($_SESSION['koszyk'][$_GET['id']]==1){
-          header("location: koszyk.php?action=del&id=$_GET[id]");
+          header("location: ./koszyk.php?action=del&id=$_GET[id]");
         }
       }
     }
@@ -104,6 +103,7 @@ OPOLE;
 ?>  
     </div>
     <footer>Bartosz Wolniewicz &copy; 2022</footer>
+    <script type="text/javascript" src="../skrypt.js"></script>
   </body>
 </html>
 

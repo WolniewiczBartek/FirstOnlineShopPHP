@@ -2,7 +2,7 @@
 session_start();
 function pokaz_userinfo(){
   $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-    $sql = "select * from uzytkownicy where email='$_SESSION[username]'";
+    $sql = "SELECT * FROM uzytkownicy WHERE email='$_SESSION[username]'";
     $res = $conn->query($sql);
     $dane = $res->fetch_assoc();
     echo <<< OPOLE
@@ -29,13 +29,13 @@ OPOLE;
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sklep </title>
+    <title>Gąbkomarzenie</title>
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
     <header>
-      <a href="../index.php"><img src="../logo.png" id="logo" alt="logo"></a>
-      <h1>Sklep internetowy</h1>
+      <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
+      <h1>Gąbkomarzenie</h1>
       <div id="nazwa">
         <a class="button" href="../index.php?action=reg"><div>Rejestracja</div></a>
         <a class="button" href="../index.php?action=log"><div>Zaloguj się</div></a>
@@ -45,7 +45,7 @@ OPOLE;
 <?php
     if(isset($_SESSION['username'])){
         if($_SESSION['username']!=""){
-          echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./zamowienia.php><div>Zamówienia</div></a><a class=button href=../index.php><div>Wróć</div></a><a class=button href=\"../index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+          echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./zamowienia.php><div>Zamówienia</div></a><a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
         }
       }
       else{
@@ -54,7 +54,7 @@ OPOLE;
     if(isset($_GET['action'])){
       if($_GET['action']=="edit"){
         $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-        $sql = "select * from uzytkownicy where email='$_SESSION[username]'";
+        $sql = "SELECT * FROM uzytkownicy WHERE email='$_SESSION[username]'";
         $res = $conn->query($sql);
         $dane = $res->fetch_assoc();
         echo <<< OPOLE
