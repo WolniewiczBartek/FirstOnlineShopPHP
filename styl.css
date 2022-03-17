@@ -91,7 +91,7 @@ form{
   align-items: center;
   flex-direction: column;
 }
-#login, #register{
+#login, #register, #verify{
   background-color: white;
   height: 72vmin;
   display: flex;
@@ -99,7 +99,7 @@ form{
   align-items: center;
   flex-direction: column;
 }
-#userinfo input, #login input, #register input{
+#userinfo input, #login input, #register input, #verify input{
   width: 300px;
   height: 40px;
   border: 2px solid #667C30;

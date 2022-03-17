@@ -10,7 +10,7 @@ $sql = "SELECT haslo, rola, stan_id FROM uzytkownicy u JOIN role r ON u.rola_id=
 $dane = $conn->query($sql)->fetch_assoc();
 
 if($dane['stan_id']==1){
-  header("location: ../index.php?action=log&info=Potwierdź założenie konta!");
+  header("location: ../sites/weryfikacja.php?mail=$_POST[mail]");
   exit();
 }
 elseif($dane['stan_id']==3){

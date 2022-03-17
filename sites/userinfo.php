@@ -15,7 +15,7 @@ function pokaz_userinfo(){
         <h4>Data urodzenia: $dane[data_urodzenia]</h4>
         <h4>Email: $dane[email]</h4>
         <div class=zwijaj>
-          <a class=button href=./delete_uzytkownicy.php?id=$dane[id]><div>Usuń</div></a>
+          <a class=button href=../scripts/delete_uzytkownicy.php?id=$dane[id]><div>Usuń</div></a>
           <a class=button href=userinfo.php?action=edit><div>Edytuj</div></a>
         </div>
       </div>
