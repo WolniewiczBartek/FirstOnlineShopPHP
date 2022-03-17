@@ -53,13 +53,13 @@ OPOLE;
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sklep </title>
+    <title>Gąbkomarzenie</title>
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
     <header>
-      <a href="../index.php"><img src="../logo.png" id="logo" alt="logo"></a>
-      <h1>Sklep internetowy</h1>      
+      <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
+      <h1>Gąbkomarzenie</h1>      
       <div id="nazwa">
         <a class="button" href="../index.php?action=reg"><div>Rejestracja</div></a>
         <a class="button" href="../index.php?action=log"><div>Zaloguj się</div></a>
@@ -79,21 +79,21 @@ if(isset($_GET['action'])){
 }
 if(isset($_GET['rola'])){
   if($_GET['rola']=="admin"){
-    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=\"../zamowienia_wew.php?rola=admin\"><div>Zamówienia</div></a><a class=button href=\"../uzytkownicy.php\"><div>Użytkownicy</div></a><a class=button href=\"../produkty.php?rola=admin\"><div>Produkty</div></a></a><a class=button href=../administrator.php><div>Wróć</div></a><a class=button href=\"../index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../admin/zamowienia_wew.php?rola=admin\"><div>Zamówienia</div></a><a class=button href=../admin/uzytkownicy.php\"><div>Użytkownicy</div></a><a class=button href=../admin/produkty.php?rola=admin><div>Produkty</div></a></a><a class=button href=../admin/administrator.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
   }
   elseif($_GET['rola']=="manager"){
-    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=\"../zamowienia_wew.php?rola=manager\"><div>Zamówienia</div></a><a class=button href=\"../produkty.php?rola=manager\"><div>Produkty</div></a></a><a class=button href=../manager.php><div>Wróć</div></a><a class=button href=\"../index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../admin/zamowienia_wew.php?rola=manager><div>Zamówienia</div></a><a class=button href=../admin/produkty.php?rola=manager><div>Produkty</div></a></a><a class=button href=../admin/manager.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
   }
   pokaz_produkt_nobuy($_GET['id']);
 }
 else{
   if(isset($_SESSION['username'])){
     if($_SESSION['username']!=""){
-      echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../koszyk/koszyk.php><div>Koszyk</div></a><a class=button href=../index.php><div>Wróć</div></a><a class=button href=\"../index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+      echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./koszyk.php><div>Koszyk</div></a><a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
     }
   }
   else{
-      echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=\"../index.php?action=reg\"><div>Rejestracja</div></a><a class=button href=\"../index.php?action=log\"><div>Zaloguj się</div></a>'</script>";
+      echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=reg><div>Rejestracja</div></a><a class=button href=../index.php?action=log><div>Zaloguj się</div></a>'</script>";
   }
   pokaz_produkt($_GET['id']);
 } 

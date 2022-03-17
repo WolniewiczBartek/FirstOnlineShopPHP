@@ -2,12 +2,13 @@
 session_start();
 foreach($_POST as $key => $x){
     if(empty($x)){
-        header('location: ./userinfo.php?action=edit&error=Wypełnij wszystkie dane!');
+        header('location: ../sites/userinfo.php?action=edit&error=Wypełnij wszystkie dane!');
         exit();
     }
 }
 if($_POST['haslo1']!=$_POST['haslo2']){
-    header('location: ./userinfo.php?action=edit&error=Hasła różnią się!');
+    header('location: ../sites/userinfo.php?action=edit&error=Hasła różnią się!');
+    exit();
 }
 else{
     $haslo = password_hash($_POST['haslo1'], PASSWORD_DEFAULT);
@@ -16,10 +17,12 @@ else{
     $conn->query($sql);
     if($conn->affected_rows==1){
         $_SESSION['username']=$_POST['email'];
-        header("location: ./userinfo.php");
+        header("location: ../sites/userinfo.php");
+        exit();
     }
     else{
-        header("location: ./userinfo.php?action=edit&error=Ten użytkownik już istnieje!");
+        header("location: ../sites/userinfo.php?action=edit&error=Ten użytkownik już istnieje!");
+        exit();
     }
     $conn->close();
 }

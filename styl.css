@@ -61,8 +61,8 @@ header{
 }
 .button{
   text-decoration: none;
-  height: 20px;
-  width: 100px;
+  height: 28px;
+  width: 140px;
   background-color: white;
   color: black;
   border: 2px solid black;
@@ -130,10 +130,14 @@ form{
   padding-bottom: 30px;
 }
 input, select{
-  width: 140px;
+  width: 160px;
   height: 30px;
   border: 2px solid #667C30;
   border-radius: 0;
+}
+input[type=file]{
+  margin-top: 8px;
+  border: none;
 }
 table{
   margin-top: 30px;
@@ -204,7 +208,7 @@ footer{
   border-bottom: 2px solid red;
 }
 a.button > div{
-  font-size: 1.8vmin;
+  font-size: 1.6vmin;
 }
 #lower_butt{
   width: 50%;
@@ -214,5 +218,5 @@ a.button > div{
   align-items: center;
 }
 .szer{
-  width: 126px;
+  width: 170px;
 }

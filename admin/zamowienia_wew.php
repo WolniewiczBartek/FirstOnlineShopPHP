@@ -5,13 +5,13 @@ session_start();
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Sklep - produkty</title>
-    <link rel="stylesheet" href="styl.css">
+    <title>Gąbkomarzenie</title>
+    <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
     <header>
-    <a href="index.php"><img src="logo.png" id="logo" alt="logo"></a>
-    <h1>Sklep internetowy</h1>
+    <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
+    <h1>Gąbkomarzenie</h1>
       <div id="nazwa">
       </div>
     </header>
@@ -19,23 +19,23 @@ session_start();
     <?php
     if(isset($_SESSION['username'])){
         $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-        $sql = "select rola from uzytkownicy where email='$_SESSION[username]'";
+        $sql = "SELECT rola FROM uzytkownicy u JOIN role r ON u.rola_id=r.id WHERE email='$_SESSION[username]'";
         $res = $conn->query($sql);
         $rola = $res->fetch_assoc();
         if($rola['rola']=="admin"){
-            echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=\"uzytkownicy.php\"><div>Użytkownicy</div></a><a class=button href=\"produkty.php?rola=admin\"><div>Produkty</div></a><a class=button href=\"administrator.php\"><div>Wróć</div></a><a class=button href=\"index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+            echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./uzytkownicy.php><div>Użytkownicy</div></a><a class=button href=./produkty.php?rola=admin><div>Produkty</div></a><a class=button href=./administrator.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
         }
         elseif($rola['rola']=="manager"){
-            echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=\"produkty.php?rola=manager\"><div>Produkty</div></a><a class=button href=\"manager.php\"><div>Wróć</div></a><a class=button href=\"index.php?action=out\"><div>Wyloguj się</div></a>'</script>";
+            echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./produkty.php?rola=manager><div>Produkty</div></a><a class=button href=./manager.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
         }
         else{
           unset($_SESSION['username']);
-          header("location: index.php?action=log");
+          header("location: ../index.php?action=log");
         } 
         $conn->close();
     }
     else{
-      header("location: index.php?action=log");
+      header("location: ../index.php?action=log");
     }
 
     echo <<< OPOLE
@@ -51,11 +51,11 @@ session_start();
         </tr>
 OPOLE;
     $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-    $sql = "select max(id) id from zamowienia;";
+    $sql = "SELECT max(id) id FROM zamowienia;";
     $res = $conn->query($sql);
     $id = $res->fetch_assoc()['id'];
     while($id>0){
-        $sql = "select u.id user_id, u.email, z.id zamowienie_id, z.data_zamowienia, z.cena kwota, zp.ilosc, p.nazwa, p.cena  from uzytkownicy u join zamowienia z on u.id=z.uzytkownik_id join zamowienia_produkty zp on z.id=zp.zamowienie_id join produkty p on zp.produkt_id=p.id where z.id=$id;";
+        $sql = "SELECT u.id user_id, u.email, z.id zamowienie_id, z.data_zamowienia, z.cena kwota, zp.ilosc, p.nazwa, p.cena FROM uzytkownicy u JOIN zamowienia z ON u.id=z.uzytkownik_id JOIN zamowienia_produkty zp ON z.id=zp.zamowienie_id JOIN produkty p ON zp.produkt_id=p.id WHERE z.id=$id;";
         $res = $conn->query($sql);
         $row = $conn->affected_rows;
         if($row>0){
@@ -91,8 +91,6 @@ OPOLE;
   </body>
 </html>
 
-
-<!-- select u.id user_id, u.email, z.id zamowienie_id, z.data_zamowienia, z.cena kwota, zp.produkt_id, zp.ilosc, p.nazwa, p.cena  from uzytkownicy u join zamowienia z on u.id=z.uzytkownik_id join zamowienia_produkty zp on z.id=zp.zamowienie_id join produkty p on zp.produkt_id=p.id; -->
 
 
 
