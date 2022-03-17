@@ -61,7 +61,7 @@ header{
 }
 .button{
   text-decoration: none;
-  height: 20px;
+  height: 28px;
   width: 140px;
   background-color: white;
   color: black;
@@ -208,7 +208,7 @@ footer{
   border-bottom: 2px solid red;
 }
 a.button > div{
-  font-size: 1.8vmin;
+  font-size: 1.6vmin;
 }
 #lower_butt{
   width: 50%;
@@ -218,5 +218,5 @@ a.button > div{
   align-items: center;
 }
 .szer{
-  width: 126px;
+  width: 170px;
 }
