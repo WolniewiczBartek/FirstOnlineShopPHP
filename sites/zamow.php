@@ -2,7 +2,7 @@
 session_start();
 if(!empty($_SESSION['koszyk'])){
     $cena_all = 0.00;
-    $lastid;
+    $lastid=null;
     $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
     foreach($_SESSION['koszyk'] as $id => $sztuki){
         $sql = "select cena from produkty where id=$id";
@@ -16,8 +16,8 @@ if(!empty($_SESSION['koszyk'])){
         $sql = "INSERT into zamowienia (id, uzytkownik_id, data_zamowienia, cena) values(null, $uzytkownik[id], null, $cena_all)";
         $conn->query($sql);
         $lastid = $conn->insert_id;
-        $numer_wew = date('H/i/s') + $lastid;
-        $sql = "UPDATE zamowienia set numer_wew=$numer_wew where id=$lastid";
+        $numer_wew = strval("#".date('Y/m/d/').$lastid);
+        $sql = "UPDATE zamowienia set numer_wew='$numer_wew' where id=$lastid";
         $conn->query($sql);
 
         foreach($_SESSION['koszyk'] as $id => $sztuki){
@@ -64,7 +64,7 @@ else{
     }
     echo <<< OPOLE
     <div class=produkt>
-        <h4>Dziękujemy za zamówienie! Numer Twojego zamówienia to #$numer_wew</h4>
+        <h4>Dziękujemy za zamówienie! Numer Twojego zamówienia to $numer_wew</h4>
     </div>
 OPOLE;
 
