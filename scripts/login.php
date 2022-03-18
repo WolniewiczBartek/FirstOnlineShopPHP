@@ -10,15 +10,15 @@ $sql = "SELECT haslo, rola, stan_id FROM uzytkownicy u JOIN role r ON u.rola_id=
 $dane = $conn->query($sql)->fetch_assoc();
 
 if($dane['stan_id']==1){
-  header("location: ../sites/weryfikacja.php?mail=$_POST[mail]");
+  header("location: ../config/mail_config.php?mail=$_POST[mail]");
   exit();
 }
 elseif($dane['stan_id']==3){
-  header("location: ../index.php?action=log&info=Twoje konto jest zablokowane!");
+  header("location: ../index.php?action=log&info=Twoje konto jest zablokowane, skontaktuj się z administratorem!");
   exit();
 }
 elseif($dane['stan_id']==4){
-  header("location: ../index.php?action=log&info=Twoje konto jest usunięte!");
+  header("location: ../index.php?action=log&info=Twoje konto jest usunięte, skontaktuj się z administratorem!");
   exit();
 }
 else{
