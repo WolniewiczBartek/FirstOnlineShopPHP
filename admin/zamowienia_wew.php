@@ -42,6 +42,7 @@ session_start();
       <table>
         <tr>
           <th>Id</th>
+          <th>Numer wewnętrzny</th>
           <th>Użytkownik</th>
           <th>Data zamówienia</th>
           <th>Produkty</th>
@@ -55,7 +56,7 @@ OPOLE;
     $res = $conn->query($sql);
     $id = $res->fetch_assoc()['id'];
     while($id>0){
-        $sql = "SELECT u.id user_id, u.email, z.id zamowienie_id, z.data_zamowienia, z.cena kwota, zp.ilosc, p.nazwa, p.cena FROM uzytkownicy u JOIN zamowienia z ON u.id=z.uzytkownik_id JOIN zamowienia_produkty zp ON z.id=zp.zamowienie_id JOIN produkty p ON zp.produkt_id=p.id WHERE z.id=$id;";
+        $sql = "SELECT u.id user_id, u.email, z.id zamowienie_id, z.data_zamowienia, z.cena kwota, z.numer_wew, zp.ilosc, p.nazwa, p.cena FROM uzytkownicy u JOIN zamowienia z ON u.id=z.uzytkownik_id JOIN zamowienia_produkty zp ON z.id=zp.zamowienie_id JOIN produkty p ON zp.produkt_id=p.id WHERE z.id=$id;";
         $res = $conn->query($sql);
         $row = $conn->affected_rows;
         if($row>0){
@@ -63,6 +64,7 @@ OPOLE;
             echo <<< OPOLE
             <tr>
                 <td rowspan='$row'>$id</td>
+                <td rowspan='$row'>$zam[numer_wew]</td>
                 <td rowspan='$row'>$zam[email]</td>
                 <td rowspan='$row'>$zam[data_zamowienia]</td>
                 <td>$zam[nazwa]</td>
