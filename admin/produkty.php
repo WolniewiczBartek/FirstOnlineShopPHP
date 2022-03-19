@@ -1,11 +1,16 @@
 <?php
 session_start();
+$autofocus = "";
+if(!(isset($_GET['action']) && $_GET['action']=="edit")){
+  $autofocus = "autofocus";
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Gąbkomarzenie</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
@@ -55,7 +60,7 @@ session_start();
         <tr>
           <form id=add action=../scripts/insert_produkty.php method=POST enctype=multipart/form-data></form>
             <td>Nowy</td>
-            <td><input name=nazwa type=text form=add placeholder=Nazwa></td>
+            <td><input name=nazwa type=text form=add placeholder=Nazwa $autofocus></td>
             <td><input name=zdjecie type=file form=add placeholder=Zdjęcie></td>
             <td><input name=cena type=number form=add placeholder=Cena step=0.01 min=0></td>
             <td><input name=ilosc type=number form=add placeholder="Ilość Magazyn" min=0></td>
@@ -94,7 +99,7 @@ OPOLE;
         $produkt = $res->fetch_assoc();
         $widoczny = $produkt['widoczny']==1 ? 0 : 1;
         $id = "prod".$_GET['id'];
-        echo "<script>document.getElementById('$id').innerHTML=\"<form action='../scripts/update_produkty.php' method=POST id=edit enctype=multipart/form-data></form><td><input name=id type=hidden form=edit value='$produkt[id]'></td><td><input name=nazwa type=text form=edit value='$produkt[nazwa]'></td><td><input name=zdjecie type=file form=edit></td><td><input name=cena type=number form=edit value='$produkt[cena]' step=0.01 min=0></td><td><input name=ilosc type=number form=edit value='$produkt[ilosc_magazyn]' min=0></td><td><select name=widoczny form=edit><option value=$produkt[widoczny]>$produkt[widoczny]</option><option value=$widoczny>$widoczny</option></select></td><td><input type=reset form=edit value='Reset'></td><td><input type=submit name=zapisz form=edit value='Zapisz'></td>\";</script>";
+        echo "<script>document.getElementById('$id').innerHTML=\"<form action='../scripts/update_produkty.php' method=POST id=edit enctype=multipart/form-data></form><td><div>$produkt[id]</div><input name=id type=hidden form=edit value='$produkt[id]'></td><td><input name=nazwa type=text form=edit value='$produkt[nazwa]' autofocus></td><td><input name=zdjecie type=file form=edit></td><td><input name=cena type=number form=edit value='$produkt[cena]' step=0.01 min=0></td><td><input name=ilosc type=number form=edit value='$produkt[ilosc_magazyn]' min=0></td><td><select name=widoczny form=edit><option value=$produkt[widoczny]>$produkt[widoczny]</option><option value=$widoczny>$widoczny</option></select></td><td><input type=reset form=edit value='Reset'></td><td><input type=submit name=zapisz form=edit value='Zapisz'></td>\";</script>";
         $conn->close();        
       }
     }    
