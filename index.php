@@ -13,7 +13,8 @@ require_once('./scripts/welcome_role_check.php');
   <head>
     <meta charset="utf-8">
     <title>Gąbkomarzenie</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="./styl.css">
   </head>
   <body>
     <header>
@@ -64,6 +65,6 @@ require_once('./scripts/welcome_role_check.php');
      ?>
      </div>
      <footer>Bartosz Wolniewicz &copy; 2022</footer>
-     <script type="text/javascript" src="skrypt.js"></script>
+     <script type="text/javascript" src="./skrypt.js"></script>
   </body>
 </html>
