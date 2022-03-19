@@ -5,6 +5,11 @@ foreach($_POST as $key => $x){
     exit();
   }
 }
+$email_regexp = "/^[a-z0-9]{3,20}\.{0,1}[a-z0-9]{3,20}@{1}[a-z.]{2,30}\.{1}[a-z]{1,5}$/i";
+if(!preg_match($email_regexp, $_POST['mail'])){
+  header('location: ../index.php?action=reg&info=Nieprawidłowy email');
+  exit();
+}
 if($_POST['haslo1']!=$_POST['haslo2']){
   header('location: ../index.php?action=reg&info=Hasła różnią się!');
   exit();
