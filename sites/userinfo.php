@@ -30,6 +30,7 @@ OPOLE;
   <head>
     <meta charset="utf-8">
     <title>Gąbkomarzenie</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
@@ -63,14 +64,14 @@ OPOLE;
             <tr>
               <th colspan=2><h4>Witaj $dane[imie]! Oto twoje konto!</h4></th>
             </tr>
-            <form action=./update_uzytkownik.php?id=$dane[id] id=edituser method=POST></form>
+            <form action=../scripts/update_uzytkownik.php?id=$dane[id] id=edituser method=POST></form>
             <tr>
               <td><h4>Email: </h4></td>
-              <td><input type=text name=email form=edituser value=$dane[email]></td>
+              <td><input type=text name=email form=edituser value=$dane[email] autofocus></td>
             </tr>
             <tr>
               <td><h4>Hasło: </h4></td>
-              <td><input type=password name=haslo1 form=edituser placeholder='Podaj nowe hasło'></td>
+              <td><input type=password name=haslo1 form=edituser class=haslo placeholder='Podaj nowe hasło'></td>
             </tr>
             <tr>
               <td><h4>Powtórz hasło: </h4></td>
@@ -88,16 +89,16 @@ OPOLE;
               <td><h4>Data urodzenia: </h4></td>
               <td><input type=date name=data_urodzenia form=edituser value=$dane[data_urodzenia]></td>
             </tr>
-            
-            
-            
-            
-            
+            <tr>
+              <td colspan=2 align=center>
+                <span id=hasloinfo style=display:none;></span>
 OPOLE;
-        if(isset($_GET['error'])){
-          echo "<tr><td colspan=2 align=center><span id=error>$_GET[error]</span></td></tr>";
+        if(isset($_GET['info'])){
+          echo "<span id=error>$_GET[info]</span>";
         }
         echo <<< OPOLE
+              </td>
+            </tr>
             <tr>
               <td><input type=reset form=edituser value=Reset></td>
               <td><input type=submit form=edituser value=Zapisz></td>
@@ -120,6 +121,7 @@ OPOLE;
 ?>  
     </div>
     <footer>Bartosz Wolniewicz &copy; 2022</footer>
+    <script type="text/javascript" src="../skrypt.js"></script>
   </body>
 </html>
 
