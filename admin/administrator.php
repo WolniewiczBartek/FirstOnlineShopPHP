@@ -6,6 +6,7 @@ session_start();
   <head>
     <meta charset="utf-8">
     <title>Gąbkomarzenie</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
