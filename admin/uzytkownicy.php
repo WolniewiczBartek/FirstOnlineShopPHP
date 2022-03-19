@@ -1,11 +1,16 @@
 <?php
 session_start();
+$autofocus = "";
+if(!(isset($_GET['action']) && $_GET['action']=="edit")){
+  $autofocus = "autofocus";
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Gąbkomarzenie</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styl.css">
   </head>
   <body>
@@ -51,7 +56,7 @@ session_start();
       <tr>
         <form id=add action=../scripts/insert_uzytkownicy.php method=POST></form>
         <td>Nowy</td>
-        <td><input name=imie form=add type=text placeholder=Imię></td>
+        <td><input name=imie form=add type=text placeholder=Imię $autofocus></td>
         <td><input name=nazwisko form=add type=text placeholder=Nazwisko></td>
         <td><input name=data_urodzenia form=add type=date></td>
         <td><input name=haslo form=add type=text placeholder=Hasło></td>
@@ -114,7 +119,7 @@ OPOLE;
             $stany = $stany."<option value=$x>$y</option>";
         }
         $id= "uzyt".$_GET['id'];
-        echo "<script>document.getElementById('$id').innerHTML=\"<form action=../scripts/update_uzytkownicy.php id=edit method=POST></form><td><input name=id type=hidden form=edit value=$uzytkownik[id]></td><td><input name=imie type=text form=edit value=$uzytkownik[imie]></td><td><input name=nazwisko type=text form=edit value=$uzytkownik[nazwisko]></td><td><input name=data_urodzenia type=date form=edit value=$uzytkownik[data_urodzenia]></td><td><input name=haslo type=text form=edit placeholder=Hasło></td><td><input name=email type=text form=edit value=$uzytkownik[email]></td><td><select name=rola_id form=edit>$role</select></td><td><select name=stan_id form=edit>$stany</select></td><td><input type=reset form=edit value='Reset do ostatnich'></td><td><input type=submit form=edit value=Zapisz></td>\"</script>";
+        echo "<script>document.getElementById('$id').innerHTML=\"<form action=../scripts/update_uzytkownicy.php id=edit method=POST></form><td><div>$uzytkownik[id]</div><input name=id type=hidden form=edit value=$uzytkownik[id]></td><td><input name=imie type=text form=edit value=$uzytkownik[imie] autofocus></td><td><input name=nazwisko type=text form=edit value=$uzytkownik[nazwisko]></td><td><input name=data_urodzenia type=date form=edit value=$uzytkownik[data_urodzenia]></td><td><input name=haslo type=text form=edit placeholder=Hasło></td><td><input name=email type=text form=edit value=$uzytkownik[email]></td><td><select name=rola_id form=edit>$role</select></td><td><select name=stan_id form=edit>$stany</select></td><td><input type=reset form=edit value='Reset do ostatnich'></td><td><input type=submit form=edit value=Zapisz></td>\"</script>";
         $conn->close();
       }
     }
