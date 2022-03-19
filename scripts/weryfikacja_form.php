@@ -7,7 +7,7 @@ echo <<< OPOLE1
   $wyslany
   <form action=../scripts/weryfikacja_uzytkownik.php method=post>
     <input type=hidden name=mail value=$mail><br>
-    <input type=text name=kod placeholder='Podaj kod weryfikacji' required><br>
+    <input type=text name=kod placeholder='Podaj kod weryfikacji' autofocus><br>
 OPOLE1;
 if(isset($_GET['info'])){
   echo "<br><span id=error>$_GET[info]</span><br>";
