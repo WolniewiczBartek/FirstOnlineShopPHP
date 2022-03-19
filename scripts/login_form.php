@@ -5,7 +5,7 @@ echo <<< OPOLE1
 <div id=login>
   <h2>Login</h2>
   <form action=./scripts/login.php method=post>
-    <input type=text name=mail $login><br>
+    <input type=text name=mail $login autofocus><br>
     <input type=password name=haslo placeholder=Hasło><br>
 OPOLE1;
 if(isset($_GET['info'])){
