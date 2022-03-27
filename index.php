@@ -34,6 +34,9 @@ require_once('./scripts/welcome_role_check.php');
       elseif($_GET['action']=="log"){
         require_once('./scripts/login_form.php');
       }
+      elseif($_GET['action']=="forgot"){
+        require_once('./scripts/zapomnialem_hasla_form.php');
+      }
       elseif($_GET['action']=="Zalogowano pomyślnie!"){
         $_SESSION['username'] = $_GET['username'];
         require_once('./scripts/show_produkty.php');
@@ -59,7 +62,7 @@ require_once('./scripts/welcome_role_check.php');
     }
     if(isset($_SESSION['username'])){
       if($_SESSION['username']!=""){
-        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./sites/userinfo.php?login=$_SESSION[username]\"><div>$_SESSION[username]</div></a><a class=button href=./sites/koszyk.php><div>Koszyk</div></a><a class=button href=./index.php?action=out><div>Wyloguj się</div></a>'</script>";
+        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./sites/userinfo.php><div>Moje konto</div></a><a class=button href=./sites/koszyk.php><div>Koszyk</div></a><a class=button href=./index.php?action=out><div>Wyloguj się</div></a>'</script>";
       }
     }
      ?>
