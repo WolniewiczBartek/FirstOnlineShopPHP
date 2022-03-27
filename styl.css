@@ -7,7 +7,7 @@ a{
   color:black;
 }
 h1{
-  font-size: 5vh;
+  font-size: 7vh;
 }
 h2{
   font-size: 4vh;
@@ -78,12 +78,15 @@ header{
   border: 2px solid black;
 }
 #nazwa{
-  width: 30%;
+  width: 35%;
   height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+#nazwa .button{
+  width: 150px;
 }
 form{
   display: flex;
@@ -91,7 +94,7 @@ form{
   align-items: center;
   flex-direction: column;
 }
-#login, #register, #verify{
+#login, #register, #verify, #email{
   background-color: white;
   height: 72vmin;
   display: flex;
@@ -99,7 +102,7 @@ form{
   align-items: center;
   flex-direction: column;
 }
-#userinfo input, #login input, #register input, #verify input{
+#userinfo input, #login input, #register input, #verify input, #email input{
   width: 300px;
   height: 40px;
   border: 2px solid #667C30;
@@ -172,6 +175,12 @@ footer{
   justify-content: center;
   align-items: center;
 }
+.zwijaj_duzy{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .produktsingle{
   display: flex;
   flex-direction: row;
@@ -218,5 +227,13 @@ a.button > div{
   align-items: center;
 }
 .szer{
-  width: 170px;
+  width: 165px;
+}
+#forgot{
+  color: darkolivegreen;
+  padding-bottom: 2px;
+}
+#forgot:hover{
+  padding-bottom: 0px;
+  border-bottom: 2px solid darkolivegreen;
 }
