@@ -80,7 +80,7 @@ if(isset($_GET['action'])){
 }
 if(isset($_GET['rola'])){
   if($_GET['rola']=="admin"){
-    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../admin/zamowienia_wew.php?rola=admin\"><div>Zamówienia</div></a><a class=button href=../admin/uzytkownicy.php\"><div>Użytkownicy</div></a><a class=button href=../admin/produkty.php?rola=admin><div>Produkty</div></a></a><a class=button href=../admin/administrator.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
+    echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../admin/zamowienia_wew.php?rola=admin><div>Zamówienia</div></a><a class=button href=../admin/uzytkownicy.php><div>Użytkownicy</div></a><a class=button href=../admin/produkty.php?rola=admin><div>Produkty</div></a></a><a class=button href=../admin/administrator.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
   }
   elseif($_GET['rola']=="manager"){
     echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../admin/zamowienia_wew.php?rola=manager><div>Zamówienia</div></a><a class=button href=../admin/produkty.php?rola=manager><div>Produkty</div></a></a><a class=button href=../admin/manager.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
