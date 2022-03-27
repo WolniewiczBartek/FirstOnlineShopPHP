@@ -52,17 +52,17 @@ else{
       <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
       <h1>Gąbkomarzenie</h1>
       <div id="nazwa">
-        <a class="button" href="../index.php?action=reg"><div>Rejestracja</div></a>
-        <a class="button" href="../index.php?action=log"><div>Zaloguj się</div></a>
+<?php
+echo <<< OPOLE
+        <a class=button href=./userinfo.php><div>Moje konto</div></a>
+        <a class=button href=../index.php><div>Wróć</div></a>
+        <a class=button href="../index.php?action=out"><div>Wyloguj się</div></a>
+OPOLE;
+?>
       </div>
     </header>
     <div id="content" class="sameheight">
 <?php
-    if(isset($_SESSION['username'])){
-        if($_SESSION['username']!=""){
-          echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
-        }
-    }
     echo <<< OPOLE
     <div class=produkt>
         <h4>Dziękujemy za zamówienie! Numer Twojego zamówienia to $numer_wew</h4>
