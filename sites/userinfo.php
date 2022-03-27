@@ -2,9 +2,19 @@
 session_start();
 function pokaz_userinfo(){
   $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-    $sql = "SELECT * FROM uzytkownicy WHERE email='$_SESSION[username]'";
+    $sql = "SELECT u.id, u.imie, u.nazwisko, u.data_urodzenia, u.email, a.kraj, a.miasto, a.kod_pocztowy, a.ulica, a.numer_domu, a.telefon FROM uzytkownicy u left join adresy a on u.id=a.id WHERE u.email='$_SESSION[username]'";
     $res = $conn->query($sql);
     $dane = $res->fetch_assoc();
+    $adres = empty($dane['ulica']) ? "<h4>Brak adresu</h4>" : <<< OPOLE
+    <div>
+      <h3>Dane do wysyłki</h3>
+      <h4>Kraj: $dane[kraj]</h4>
+      <h4>Adres: $dane[kod_pocztowy] $dane[miasto]</h4>
+      <h4>ul. $dane[ulica] $dane[numer_domu]</h4>
+      <h4>Telefon: $dane[telefon]</h4>
+    </div>
+
+  OPOLE;
     echo <<< OPOLE
     <div class=produkt>
       <div></div>
@@ -14,12 +24,13 @@ function pokaz_userinfo(){
         <h4>Nazwisko: $dane[nazwisko]</h4>
         <h4>Data urodzenia: $dane[data_urodzenia]</h4>
         <h4>Email: $dane[email]</h4>
-        <div class=zwijaj>
-          <a class=button href=../scripts/delete_uzytkownicy.php?id=$dane[id]><div>Usuń</div></a>
-          <a class=button href=userinfo.php?action=edit><div>Edytuj</div></a>
-        </div>
       </div>
+      $adres
       <div></div>
+    </div>
+    <div class=zwijaj_duzy>
+      <a class=cart_button href=../scripts/delete_uzytkownicy.php?id=$dane[id]><div>Usuń</div></a>
+      <a class=cart_button href=userinfo.php?action=edit><div>Edytuj</div></a>
     </div>
 OPOLE;
     $conn->close();
@@ -55,7 +66,7 @@ OPOLE;
     if(isset($_GET['action'])){
       if($_GET['action']=="edit"){
         $conn = new mysqli('localhost', 'root', '', 'passwd_hash');
-        $sql = "SELECT * FROM uzytkownicy WHERE email='$_SESSION[username]'";
+        $sql = "SELECT u.id, u.imie, u.nazwisko, u.data_urodzenia, u.email, a.kraj, a.miasto, a.kod_pocztowy, a.ulica, a.numer_domu, a.telefon FROM uzytkownicy u left join adresy a on u.id=a.id WHERE u.email='$_SESSION[username]'";
         $res = $conn->query($sql);
         $dane = $res->fetch_assoc();
         echo <<< OPOLE
@@ -88,6 +99,30 @@ OPOLE;
             <tr>
               <td><h4>Data urodzenia: </h4></td>
               <td><input type=date name=data_urodzenia form=edituser value=$dane[data_urodzenia]></td>
+            </tr>
+            <tr>
+              <td><h4>Kraj: </h4></td>
+              <td><input type=text name=kraj form=edituser value=$dane[kraj]></td>
+            </tr>
+            <tr>
+              <td><h4>Miasto: </h4></td>
+              <td><input type=text name=miasto form=edituser value=$dane[miasto]></td>
+            </tr>
+            <tr>
+              <td><h4>Kod pocztowy: </h4></td>
+              <td><input type=text name=kod_pocztowy form=edituser value=$dane[kod_pocztowy]></td>
+            </tr>
+            <tr>
+              <td><h4>Ulica: </h4></td>
+              <td><input type=text name=ulica form=edituser value=$dane[ulica]></td>
+            </tr>
+            <tr>
+              <td><h4>Numer domu/mieszkania: </h4></td>
+              <td><input type=text name=numer_domu form=edituser value=$dane[numer_domu]></td>
+            </tr>
+            <tr>
+              <td><h4>Telefon: </h4></td>
+              <td><input type=text name=telefon form=edituser value=$dane[telefon]></td>
             </tr>
             <tr>
               <td colspan=2 align=center>
