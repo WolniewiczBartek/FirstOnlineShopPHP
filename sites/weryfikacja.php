@@ -11,6 +11,7 @@
       <a href="../index.php"><img src="../images/logo.png" id="logo" alt="logo"></a>
       <h1>Gąbkomarzenie</h1>
       <div id="nazwa">
+        <a class=button href=../index.php><div>Wróć</div></a>
       </div>
     </header>
     <div id="content" class="sameheight">
