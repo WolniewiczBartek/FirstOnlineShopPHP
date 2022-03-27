@@ -1,3 +1,4 @@
-#Config file
+#Config files
 config/
 mail_config.php
+mail_config_forgot.php
