@@ -9,7 +9,7 @@ else{
     $res = $conn->query($sql);
     if($conn->affected_rows==1){
         $dane = $res->fetch_assoc();
-        if($dane['kod']==$_POST['kod']){
+        if(strval($dane['kod'])==strval($_POST['kod'])){
             $haslo = password_hash($_POST['haslo1'], PASSWORD_DEFAULT);
             $sql = "UPDATE uzytkownicy SET haslo='$haslo' where id='$_POST[id]'";
             $conn->query($sql);
@@ -20,7 +20,7 @@ else{
         else{
             header("location: ../sites/zmiana_hasla.php?id=$_POST[id]&info=Zły kod!");
             exit();
-        }
+        } 
     }
     else{
         header("location: ../index.php");
