@@ -4,7 +4,7 @@ echo <<< OPOLE1
   <h2>Zmiana hasła</h2>
   <form action=../scripts/ustaw_nowe_haslo.php method=post>
     <input type=hidden name=id value=$_GET[id]>
-    <input type=number name=kod min=100000 max=999999 placeholder='Kod przywracania' autofocus><br>
+    <input type=text name=kod placeholder='Kod przywracania' autofocus><br>
     <input type=password name=haslo1 placeholder='Podaj hasło'><br>
     <input type=password name=haslo2 placeholder='Podaj ponownie hasło'><br>
 OPOLE1;
