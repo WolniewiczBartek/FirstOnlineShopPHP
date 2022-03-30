@@ -73,9 +73,9 @@ OPOLE;
       if($_SESSION['username']!=""){
         echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=./userinfo.php><div>Moje konto</div></a><a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=out><div>Wyloguj się</div></a>'</script>";
       }
-      else{
-        echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=reg><div>Rejestracja</div></a><a class=button href=../index.php?action=log><div>Zaloguj się</div></a>'</script>";
-      }
+    }
+    else{
+      echo "<script>document.getElementById('nazwa').innerHTML = '<a class=button href=../index.php><div>Wróć</div></a><a class=button href=../index.php?action=reg><div>Rejestracja</div></a><a class=button href=../index.php?action=log><div>Zaloguj się</div></a>'</script>";
     }
     if(isset($_GET['action'])){
       if($_GET['action']=="del"){
