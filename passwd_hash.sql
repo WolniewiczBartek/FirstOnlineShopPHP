@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Mar 2022, 23:05
+-- Czas generowania: 31 Mar 2022, 21:48
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.10
 
@@ -37,13 +37,6 @@ CREATE TABLE `adresy` (
   `telefon` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Zrzut danych tabeli `adresy`
---
-
-INSERT INTO `adresy` (`id`, `kraj`, `miasto`, `kod_pocztowy`, `ulica`, `numer_domu`, `telefon`) VALUES
-(78, 'Polska', 'Koziegłowy', '62-005', 'Janikowska', '48/3', '515356896');
-
 -- --------------------------------------------------------
 
 --
@@ -64,11 +57,11 @@ CREATE TABLE `produkty` (
 --
 
 INSERT INTO `produkty` (`id`, `nazwa`, `zdjecie`, `cena`, `ilosc_magazyn`, `widoczny`) VALUES
-(1, 'Eurogąbkaaa', 'gabka.jpg', '34.64', 75, 1),
+(1, 'Eurogąbkaaa', 'gabka.jpg', '34.64', 59, 1),
 (2, 'gąbka w kształcie kotleta', 'kotlet.jpg', '44.99', 0, 0),
-(3, 'gąbka maślana', 'maslo.jpg', '39.00', 6660, 1),
+(3, 'gąbka maślana', 'maslo.jpg', '39.00', 6644, 1),
 (4, 'gąbka w kształcie chleba', 'chleb.jpg', '44.33', 243, 1),
-(5, 'gąbka wiadro', 'wiadro.jpg', '34.00', 13, 1),
+(5, 'gąbka wiadro', 'wiadro.jpg', '34.00', 8, 1),
 (6, 'gąbka jabłkowa', 'jablko.jpg', '43.00', 0, 0),
 (7, 'gąbka lizak', 'lizak.jpg', '69.69', 15, 1),
 (8, 'Gąbka miodowe marzenie', 'miod.jpg', '25.00', 49, 1);
@@ -139,9 +132,9 @@ INSERT INTO `uzytkownicy` (`id`, `email`, `imie`, `nazwisko`, `data_urodzenia`, 
 (57, 'k', 'k', 'k', '2022-03-15', '$2y$10$FoLQWshShAfEOJQRjvcjkuL69O3xkP9AmCrjzKwQJgI4cH5Eg8E2W', 1, 2),
 (59, 'm', 'm', 'm', '2022-03-02', '$2y$10$yDxy4qYVniYEBoO6ZLqLHetkwYailQX66BECrDZHQvqcmEmDf92T.', 2, 2),
 (60, 'a', 'a', 'a', '2022-03-09', '$2y$10$bqcj/pfhCe/A6HT.aGPLYOTlR0lbZH7Jf1u4XkwmvRm4My7mcwLeS', 3, 2),
-(78, 'bartosz.wolniewicz@uczen.zsk.poznan.pl', 'a', 'a', '2022-03-09', '$2y$10$NjDEXr74d63hVC7w5g2ndOJpMpyu6el4iDV5CuZaG3pDQTUZH88Vy', 1, 2),
-(79, 'wolniewiczbart8@gmail.com', 'a', 'a', '2022-03-08', '$2y$10$FRpwvFtRXEiDCD2xFvvrwemcR.K2M7K0fOXCersYsZoz1VrysxdN6', 1, 2),
-(80, 'zoska2002@gmail.com', 'a', 'a', '2022-03-16', '$2y$10$ArwJRTGP6hvVnbKKxjWg8u7LdaICbLBmFHxUssW77IFzWnpBV.6nK', 1, 2);
+(78, 'bartosz.wolniewicz@uczen.zsk.poznan.pl', 'a', 'a', '2022-03-09', '$2y$10$lCjxl/8RWnVi/tumw1hcZOy/fCuS1HiUhDy/TmPGsMN0gHzvgPwbC', 1, 2),
+(79, 'wolniewiczbart8@gmail.com', 'a', 'a', '2022-03-08', '$2y$10$QQKS16/dpAZ4N/mcSHN8te1E1esxNhAQAombr1x7xpoLS/5szvXKK', 1, 2),
+(80, 'zoska2002@gmail.com', 'a', 'a', '2022-03-16', '$2y$10$ArwJRTGP6hvVnbKKxjWg8u7LdaICbLBmFHxUssW77IFzWnpBV.6nK', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -162,7 +155,7 @@ INSERT INTO `weryfikacje` (`id`, `kod`) VALUES
 (78, 747887),
 (79, 965744),
 (57, 721849),
-(80, 622840);
+(80, 622843);
 
 -- --------------------------------------------------------
 
@@ -175,9 +168,19 @@ CREATE TABLE `zamowienia` (
   `uzytkownik_id` int(11) NOT NULL,
   `data_zamowienia` timestamp NOT NULL DEFAULT current_timestamp(),
   `numer_wew` varchar(30) NOT NULL,
-  `cena` decimal(10,2) NOT NULL,
-  `dostawa_id` int(11) NOT NULL
+  `cena` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `zamowienia`
+--
+
+INSERT INTO `zamowienia` (`id`, `uzytkownik_id`, `data_zamowienia`, `numer_wew`, `cena`) VALUES
+(7, 79, '2022-03-30 21:25:05', '#2022/03/30/7', '220.92'),
+(8, 79, '2022-03-30 21:26:53', '#2022/03/30/8', '209.00'),
+(9, 79, '2022-03-30 21:28:48', '#2022/03/30/9', '207.84'),
+(10, 78, '2022-03-30 21:30:31', '#2022/03/30/10', '390.00'),
+(11, 79, '2022-03-31 18:00:26', '#2022/03/31/11', '103.92');
 
 -- --------------------------------------------------------
 
@@ -190,6 +193,19 @@ CREATE TABLE `zamowienia_produkty` (
   `produkt_id` int(11) DEFAULT NULL,
   `ilosc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `zamowienia_produkty`
+--
+
+INSERT INTO `zamowienia_produkty` (`zamowienie_id`, `produkt_id`, `ilosc`) VALUES
+(7, 3, 3),
+(7, 1, 3),
+(8, 3, 1),
+(8, 5, 5),
+(9, 1, 6),
+(10, 3, 10),
+(11, 1, 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -280,7 +296,7 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `zamowienia`
 --
 ALTER TABLE `zamowienia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ograniczenia dla zrzutów tabel
