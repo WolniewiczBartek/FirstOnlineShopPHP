@@ -23,6 +23,7 @@ function pokaz_zamowienia(){
       <tr>
           <th>Lp.</th>
           <th>Data zamówienia</th>
+          <th>Numer wewnętrzny</th>
           <th>Kwota zamówienia</th>
       </tr>
 OPOLE;
@@ -31,6 +32,7 @@ OPOLE;
           <tr>
               <td>$count</td>
               <td>$dane[data_zamowienia]</td>
+              <td>$dane[numer_wew]</td>
               <td>$dane[cena] zł</td>
           </tr>
 OPOLE;
