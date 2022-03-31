@@ -98,7 +98,7 @@ OPOLE;
               <input type=reset value=Reset><br>
               <input type=submit value=Zapisz>
             </form>
-        OPOLE;
+OPOLE;
       }
       else{
         header("location: zamow.php?action=zamow&id=$uzytkownik[id]");
